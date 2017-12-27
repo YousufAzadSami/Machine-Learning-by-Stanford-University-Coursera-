@@ -13,8 +13,15 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+hypothesisForEachRow = X*theta;
 
+diffForEachRow = hypothesisForEachRow - y;
 
+diffForEachRowSquared = diffForEachRow .* diffForEachRow;
+
+sumOfDiffBetweenHypothesisAndRealValues = sum(diffForEachRowSquared);
+
+J = sumOfDiffBetweenHypothesisAndRealValues / 2 / m;
 
 
 % =========================================================================
