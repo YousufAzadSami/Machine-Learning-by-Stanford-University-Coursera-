@@ -105,7 +105,10 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
-
+x_new = [1650 3];
+x_new = (x_new .- mu) ./ sigma;
+x_new = [1 x_new];
+price = x_new * theta;
 
 % ============================================================
 
@@ -150,8 +153,8 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
-
+x_new_normal = [1 1650 3];
+price = x_new_normal * theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
