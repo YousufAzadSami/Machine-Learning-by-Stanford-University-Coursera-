@@ -82,11 +82,11 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
-num_iters = 400;
+alpha = 0.1;
+num_iters = 50;
 
 % Init Theta and Run Gradient Descent 
-theta = zeros(3, 1);
+theta = zeros(size(X,2), 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
 % Plot the convergence graph
