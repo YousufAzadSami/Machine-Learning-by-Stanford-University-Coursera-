@@ -15,8 +15,13 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+% Test code
+%p1 = sigmoid(X * theta);
+%p2 = (X * theta);
+%p3 = [p1, p2];
+%disp(p3(1:20, :));
 
-
+p = sigmoid(X * theta) >= .5;
 
 
 
