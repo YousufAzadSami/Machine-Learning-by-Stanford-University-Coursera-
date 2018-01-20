@@ -20,11 +20,23 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+thetaTransposeX = X * theta;
+% sigmoidThetaTransposeX is the hypothesis function 
+sigmoidThetaTransposeX = sigmoid(thetaTransposeX);
+firstPart = -y .* log(sigmoidThetaTransposeX);
+secondPart = (1 - y) .* log(1 - sigmoidThetaTransposeX);
+
+forEachRow = firstPart - secondPart;
+
+allRowSummation = sum(forEachRow);
+
+J = allRowSummation / m;
 
 
-
-
-
+numOfFeature = columns(X);
+for jIndex = 1 : numOfFeature
+  grad(jIndex) = sum((sigmoidThetaTransposeX - y) .* X(:, jIndex)) / m;
+endfor;
 
 
 % =============================================================
