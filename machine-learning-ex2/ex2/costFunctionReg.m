@@ -17,9 +17,34 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+% get the cost
+thetaTransposeX = X * theta;
+% sigmoidThetaTransposeX is the hypothesis function 
+sigmoidThetaTransposeX = sigmoid(thetaTransposeX);
+firstPart = -y .* log(sigmoidThetaTransposeX);
+secondPart = (1 - y) .* log(1 - sigmoidThetaTransposeX);
 
+forEachRow = firstPart - secondPart;
+allRowSummation = sum(forEachRow);
 
+costWithoutRegularization = allRowSummation / m;
+thetaSumSquared = sum(theta(2:end) .^ 2);
+penalty = lambda / 2 / m * thetaSumSquared;
+penalty1 = lambda / 2 / m * (sum(theta(2:end)));  % debug code
 
+J = costWithoutRegularization + penalty;
+
+numOfFeature = columns(X);
+for jIndex = 1 : numOfFeature
+  grad(jIndex) = sum((sigmoidThetaTransposeX - y) .* X(:, jIndex)) / m;
+  
+  if(jIndex != 1)
+    grad(jIndex) = grad(jIndex) + (lambda / m * grad(jIndex));  
+  endif
+  
+endfor;
+
+% get the gradient
 
 
 % =============================================================
