@@ -35,11 +35,11 @@ penalty1 = lambda / 2 / m * (sum(theta(2:end)));  % debug code
 J = costWithoutRegularization + penalty;
 
 numOfFeature = columns(X);
-for jIndex = 1 : numOfFeature
+for jIndex = 1 : numOfFeature  
   grad(jIndex) = sum((sigmoidThetaTransposeX - y) .* X(:, jIndex)) / m;
   
   if(jIndex != 1)
-    grad(jIndex) = grad(jIndex) + (lambda / m * grad(jIndex));  
+    grad(jIndex) = grad(jIndex) + (lambda / m * theta(jIndex));  
   endif
   
 endfor;
