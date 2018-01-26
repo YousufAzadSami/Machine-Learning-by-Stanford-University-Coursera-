@@ -49,11 +49,23 @@ forEachRow = firstPart - secondPart;
 
 allRowSummation = sum(forEachRow);
 
-J = allRowSummation / m;
+costWithoutRegularization = allRowSummation / m;
+
+% regulariztion for cost function 
+thetaSumSquared = sum(theta(2:end) .^ 2);
+penalty = lambda / 2 / m * thetaSumSquared;
+
+
+J = costWithoutRegularization + penalty;
 
 
 % 02 : Gradient decent (vectorized)(unrelarized)
-
+grad = ((sigmoidThetaTransposeX - y)' * X) / m;  
+% regularizing gradient decent 
+tempTheta = theta;
+tempTheta(1) = 0;
+gradientPenalty = (lambda / m * tempTheta);
+grad = grad .+ gradientPenalty';
 
 
 
