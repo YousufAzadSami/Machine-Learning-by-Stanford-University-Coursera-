@@ -37,7 +37,22 @@ grad = zeros(size(theta));
 %
 
 
+% 01 : Cost function (vectorized)(unregularized)
+thetaTransposeX = X * theta;
+% sigmoidThetaTransposeX is the hypothesis function 
+sigmoidThetaTransposeX = sigmoid(thetaTransposeX);
 
+firstPart = -y .* log(sigmoidThetaTransposeX);
+secondPart = (1 - y) .* log(1 - sigmoidThetaTransposeX);
+
+forEachRow = firstPart - secondPart;
+
+allRowSummation = sum(forEachRow);
+
+J = allRowSummation / m;
+
+
+% 02 : Gradient decent (vectorized)(unrelarized)
 
 
 
