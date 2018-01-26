@@ -23,6 +23,7 @@ grad = zeros(size(theta));
 thetaTransposeX = X * theta;
 % sigmoidThetaTransposeX is the hypothesis function 
 sigmoidThetaTransposeX = sigmoid(thetaTransposeX);
+
 firstPart = -y .* log(sigmoidThetaTransposeX);
 secondPart = (1 - y) .* log(1 - sigmoidThetaTransposeX);
 
