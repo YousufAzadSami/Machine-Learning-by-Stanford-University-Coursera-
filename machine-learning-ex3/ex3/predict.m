@@ -21,11 +21,20 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(m, 1) X];
+XThetaTranspose = X * Theta1';
+SigmoidXThetaTranspose = sigmoid(XThetaTranspose);
+% size of the second unit aka number of activation unit
+m2 = size(SigmoidXThetaTranspose, 2);
+SigmoidXThetaTranspose = [ones(m, 1) SigmoidXThetaTranspose ];
 
 
+% Final layer 
+a3 = SigmoidXThetaTranspose * Theta2';
+a3 = sigmoid(a3);
 
 
-
+[maxValues, p] = max(a3, [], 2);
 
 
 
