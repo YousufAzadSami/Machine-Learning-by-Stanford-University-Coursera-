@@ -66,7 +66,13 @@ costMatrix = firstPart - secondPart;
 J = sum(costMatrix(:)) / m;
 % now we can compute the cost function 
 
+% Rgularized cost 
+regularizedCostForTheta1 = Theta1(:, 2: end) .^ 2;
+regularizedCostForTheta2 = Theta2(:, 2: end) .^ 2;
 
+regularizedCostForTheta1and2 = sum(regularizedCostForTheta1(:)) + sum(regularizedCostForTheta2(:));
+
+J = J + (regularizedCostForTheta1and2 * lambda / 2 / m);
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
