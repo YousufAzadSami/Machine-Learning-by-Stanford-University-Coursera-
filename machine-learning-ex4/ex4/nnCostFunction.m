@@ -39,6 +39,34 @@ Theta2_grad = zeros(size(Theta2));
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
 %
+X = [ones(m, 1) X];
+XThetaTranspose = X * Theta1';
+SigmoidXThetaTranspose = sigmoid(XThetaTranspose);
+a2 = SigmoidXThetaTranspose;
+% size of the second unit aka number of activation unit
+% m2 = size(a2, 2);
+a2 = [ones(m, 1) a2 ];
+
+
+% Final layer 
+a3 = a2 * Theta2';
+a3 = sigmoid(a3);
+
+% now we have the hypothesis 
+hTheta = a3;
+
+% y_matrix is 5000*10 where y is 5000*10
+y_matrix = eye(num_labels)(y,:);
+
+%first part of the cost function
+firstPart = -y_matrix .* log(hTheta);
+secondPart = (1 - y_matrix) .* log(1 - hTheta);
+costMatrix = firstPart - secondPart;
+
+J = sum(costMatrix(:)) / m;
+% now we can compute the cost function 
+
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
