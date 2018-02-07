@@ -24,8 +24,7 @@ p = zeros(size(X, 1), 1);
 X = [ones(m, 1) X];
 XThetaTranspose = X * Theta1';
 SigmoidXThetaTranspose = sigmoid(XThetaTranspose);
-% size of the second unit aka number of activation unit
-m2 = size(SigmoidXThetaTranspose, 2);
+% adding bias unit to the second layer activation units
 SigmoidXThetaTranspose = [ones(m, 1) SigmoidXThetaTranspose ];
 
 
