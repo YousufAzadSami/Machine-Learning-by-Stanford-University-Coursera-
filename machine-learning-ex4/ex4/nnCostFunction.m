@@ -39,10 +39,9 @@ Theta2_grad = zeros(size(Theta2));
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
 %
-X = [ones(m, 1) X];
-XThetaTranspose = X * Theta1';
-SigmoidXThetaTranspose = sigmoid(XThetaTranspose);
-a2 = SigmoidXThetaTranspose;
+a1 = X = [ones(m, 1) X];
+z2 = XThetaTranspose = X * Theta1';
+a2 = SigmoidXThetaTranspose = sigmoid(z2);
 % size of the second unit aka number of activation unit
 % m2 = size(a2, 2);
 a2 = [ones(m, 1) a2 ];
@@ -88,6 +87,15 @@ J = J + (regularizedCostForTheta1and2 * lambda / 2 / m);
 %               over the training examples if you are implementing it for the 
 %               first time.
 %
+d3 = a3 - y_matrix;
+
+d2 = (d3 * Theta2(:, 2:end)) .* sigmoidGradient(z2);
+
+Delta1 = d2' * a1;
+Delta2 = d3' * a2;
+
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta2 / m;
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
