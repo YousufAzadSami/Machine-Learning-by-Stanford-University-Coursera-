@@ -19,9 +19,20 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+%first part of the equation
+hTheta = X * theta;
+diff = hTheta - y;
+diff = diff .^ 2;
+firstPart = (sum(diff(:))) / 2 / m;
+
+% second part of the equation
+thetaSquare = theta .^ 2;
+sumThetaSquare = sum(thetaSquare(2:end));
+secondPart = regularization = lambda / 2 / m * sumThetaSquare;
 
 
-
+% cost function 
+J = firstPart + secondPart;
 
 
 
