@@ -59,7 +59,7 @@ penalty = lambda / 2 / m * thetaSumSquared;
 J = costWithoutRegularization + penalty;
 
 
-% 02 : Gradient decent (vectorized)(unrelarized)
+% 02 : Gradient decent (vectorized)(unregularized)
 grad = ((sigmoidThetaTransposeX - y)' * X) / m;  
 % regularizing gradient decent 
 tempTheta = theta;
