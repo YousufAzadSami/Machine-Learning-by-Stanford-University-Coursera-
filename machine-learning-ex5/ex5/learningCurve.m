@@ -54,7 +54,14 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
-
+for i = 1:m 
+  % Here we are setting lambda to zero and calculating the theta values
+  % for m=1, 2, 3, 4, 5 ... 
+  theta_i = trainLinearReg(X(1:i, : ), y(1:i, : ), lambda);
+  
+  error_train(i) = linearRegCostFunction(X(1:i, :), y(1:i, :), theta_i, 0);
+  error_val(i) = linearRegCostFunction(Xval, yval, theta_i, 0);
+endfor
 
 
 
