@@ -34,14 +34,12 @@ secondPart = regularization = lambda / 2 / m * sumThetaSquare;
 % cost function 
 J = firstPart + secondPart;
 
-
-
-
-
-
-
-
 % =========================================================================
+
+% gradient without regularization 
+grad = (X' * (hTheta - y)) / m;
+% adding regularization to gradient
+grad(2:end) = grad(2:end) + lambda / m * theta(2:end);
 
 grad = grad(:);
 
