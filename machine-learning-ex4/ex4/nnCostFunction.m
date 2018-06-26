@@ -54,7 +54,7 @@ a3 = sigmoid(a3);
 % now we have the hypothesis 
 hTheta = a3;
 
-% y_matrix is 5000*10 where y is 5000*10
+% y_matrix is 5000*10 where y is 5000*1
 y_matrix = eye(num_labels)(y,:);
 
 %first part of the cost function
