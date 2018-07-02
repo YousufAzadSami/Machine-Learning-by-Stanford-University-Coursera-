@@ -27,8 +27,11 @@ load('ex6data3.mat');
 
 C_testCase = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 sigma_testCase = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+% The error percentage cannot be more than 100%, in this case 1
 error = 1;
+% Helper variable to show the combination number between C and sigma
 combination = 0;
+
 for i = C_testCase,
   for j = sigma_testCase,
     combination++;
