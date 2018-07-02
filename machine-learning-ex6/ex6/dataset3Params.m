@@ -23,10 +23,28 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+load('ex6data3.mat');
 
-
-
-
+C_testCase = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+sigma_testCase = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+error = 1;
+combination = 0;
+for i = C_testCase,
+  for j = sigma_testCase,
+    combination++;
+    fprintf("Combination: %d, C: %f, sigma: %f", combination, i, j);
+    
+    % svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); 
+    model = svmTrain(X, y, i, @(x1, x2) gaussianKernel(x1, x2, j)); 
+    predictions = svmPredict(model, Xval);
+    
+    if (mean(double(predictions ~= yval)) < error)
+      error = mean(double(predictions ~= yval));
+      C = i;
+      sigma = j;
+    endif
+  end;
+end;
 
 
 % =========================================================================
