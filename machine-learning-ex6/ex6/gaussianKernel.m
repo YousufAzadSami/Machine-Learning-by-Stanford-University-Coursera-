@@ -17,8 +17,10 @@ sim = 0;
 %
 
 
+diffSquared = (x1 - x2) .^ 2;
+sumOfDiffSquared = sum(diffSquared(:));
 
-
+sim = exp(- sumOfDiffSquared / 2 / sigma^2);
 
 
 % =============================================================
