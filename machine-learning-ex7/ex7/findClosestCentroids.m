@@ -9,6 +9,10 @@ function idx = findClosestCentroids(X, centroids)
 % load('ex7data2.mat');
 % centroids = [3 3; 6 2; 8 5];
 
+% extra testcase from coursera
+% X = reshape(sin(1:50), 10, 5);
+% centroids = cent = X(7:10,:);
+
 % Set K
 % You need to return the following variables correctly.
 idx = zeros(size(X,1), 1);
@@ -25,7 +29,7 @@ idx = zeros(size(X,1), 1);
 
 distance = zeros(size(X,1), length(centroids));
 
-for i = 1:length(centroids)
+for i = 1:size(centroids, 1)
   % diff = bsxfun(@minus, X, centroids(i, : ));
   % distance = sum(diff .^ 2, 2);
   diff = X - centroids(i, :);
