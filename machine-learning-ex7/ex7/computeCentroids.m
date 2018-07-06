@@ -26,12 +26,15 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+for i = [1:K]
+  % find all the index with i(=K), why? The values of X in these indices
+  % belong to the centroid(i) 
+  indices = find(idx == i);
+  % these values of X belong to centroid(i)
+  x_indices = X(indices, :);
+  % Add all values of X and devide by how may numbers there were i.e average
+  centroids(i, : ) = sum(x_indices) / size(x_indices, 1);
+endfor
 
 % =============================================================
 
