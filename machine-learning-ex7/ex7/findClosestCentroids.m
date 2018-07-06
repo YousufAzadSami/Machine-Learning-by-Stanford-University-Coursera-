@@ -5,9 +5,11 @@ function idx = findClosestCentroids(X, centroids)
 %   vector of centroid assignments (i.e. each entry in range [1..K])
 %
 
-% Set K
-K = size(centroids, 1);
+% Debug code 
+% load('ex7data2.mat');
+% centroids = [3 3; 6 2; 8 5];
 
+% Set K
 % You need to return the following variables correctly.
 idx = zeros(size(X,1), 1);
 
@@ -21,13 +23,21 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+distance = zeros(size(X,1), length(centroids));
 
+for i = 1:length(centroids)
+  % diff = bsxfun(@minus, X, centroids(i, : ));
+  % distance = sum(diff .^ 2, 2);
+  diff = X - centroids(i, :);
+  diffSquared = diff .^ 2;
+  diffSquaredSum = sum(diffSquared, 2);
+  
+  distance(:, i) = diffSquaredSum;
+endfor
 
-
-
+[temp, idx] = min(distance, [], 2);
 
 
 % =============================================================
 
 end
-
