@@ -27,7 +27,7 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-distance = zeros(size(X,1), length(centroids));
+distance = zeros(size(X,1), size(centroids, 1));
 
 for i = 1:size(centroids, 1)
   % diff = bsxfun(@minus, X, centroids(i, : ));
