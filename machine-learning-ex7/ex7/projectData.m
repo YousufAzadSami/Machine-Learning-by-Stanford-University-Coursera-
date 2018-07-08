@@ -18,7 +18,8 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
-
+Ureduce = U(:,1:K);     % take the first k directions
+Z = X * Ureduce;        % compute the projected data points
 
 
 % =============================================================
