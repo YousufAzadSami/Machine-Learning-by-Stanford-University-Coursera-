@@ -10,7 +10,12 @@ bestEpsilon = 0;
 bestF1 = 0;
 F1 = 0;
 
+F11 = [];
+
 stepsize = (max(pval) - min(pval)) / 1000;
+
+epsilon1 = min(pval):stepsize:max(pval);
+
 for epsilon = min(pval):stepsize:max(pval)
     
     % ====================== YOUR CODE HERE ======================
@@ -23,23 +28,42 @@ for epsilon = min(pval):stepsize:max(pval)
     % Note: You can use predictions = (pval < epsilon) to get a binary vector
     %       of 0's and 1's of the outlier predictions
 
-
-
-
-
-
-
-
-
-
-
-
-
-    % =============================================================
-
+  truePositive = 0; 
+  trueNegative = 0;
+  falsePositive = 0; 
+  falseNegative = 0;  
+    
+  % prediction for the particular epsilon  
+  predictions = pval < epsilon;  
+  
+  for i = 1:size(yval,1)
+    if(yval(i) == 1 && predictions(i) == 1)
+      truePositive++;
+    endif  
+    if(yval(i) == 0 && predictions(i) == 1)
+      falsePositive++;
+    endif  
+    if(yval(i) == 0 && predictions(i) == 0)
+      trueNegative++;
+    endif  
+    if(yval(i) == 1 && predictions(i) == 0)
+      falseNegative++;
+    endif  
+  endfor
+    
+    
+    
+  precision = truePositive / (truePositive + falsePositive);
+  recall = truePositive / (truePositive + falseNegative);
+  
+  F1 =  2 * precision * recall / (precision + recall);
+  F11 = [F11; F1];
+  
+    % =============================================================    
     if F1 > bestF1
        bestF1 = F1;
        bestEpsilon = epsilon;
+       fprintf('F1 on Cross Validation Set:  %f\n', F1);
     end
 end
 
