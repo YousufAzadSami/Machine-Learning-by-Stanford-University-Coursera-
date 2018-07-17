@@ -41,18 +41,22 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+% Cost function 
+
+% thetaTransposeX
+thetaTransposeX = X * Theta';
+
+diff = (thetaTransposeX .* R) - (Y .* R);
+diffSquared = diff .^ 2;
+diffSquaredSum = sum(diffSquared(:));
+J = diffSquaredSum / 2;
 
 
 
-
-
-
-
-
-
-
-
-
+% Gradient decent 
+error_factor = (thetaTransposeX - Y) .* R;
+X_grad = error_factor * Theta;
+Theta_grad = error_factor' * X;
 
 
 % =============================================================
