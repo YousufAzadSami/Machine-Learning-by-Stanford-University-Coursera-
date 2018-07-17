@@ -59,8 +59,8 @@ J = diffSquaredSum / 2 + regularization_1 + regularization_2;
 
 % Gradient decent 
 error_factor = (thetaTransposeX - Y) .* R;
-X_grad = error_factor * Theta;
-Theta_grad = error_factor' * X;
+X_grad = error_factor * Theta + lambda .* X;
+Theta_grad = error_factor' * X + lambda .* Theta;
 
 
 % =============================================================
