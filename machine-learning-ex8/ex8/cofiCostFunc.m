@@ -49,7 +49,11 @@ thetaTransposeX = X * Theta';
 diff = (thetaTransposeX .* R) - (Y .* R);
 diffSquared = diff .^ 2;
 diffSquaredSum = sum(diffSquared(:));
-J = diffSquaredSum / 2;
+
+regularization_1 = sum(Theta(:) .^ 2) * lambda / 2;
+regularization_2 = sum(X(:) .^ 2) * lambda / 2;
+
+J = diffSquaredSum / 2 + regularization_1 + regularization_2;
 
 
 
